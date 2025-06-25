@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/eigenprep.png" alt="EigenPrep Logo" width="200"/>
+  <img src="assets/eigenprep.PNG" alt="EigenPrep Logo" width="500"/>
 </div>
 
 # EigenPrep
