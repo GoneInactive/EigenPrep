@@ -149,7 +149,10 @@ class MainWindow(QWidget):
         """)
         buttons_layout = QVBoxLayout(buttons_frame)
         buttons_layout.setContentsMargins(40, 30, 40, 30)
-        buttons_layout.setSpacing(20)
+        buttons_layout.setSpacing(36)
+        
+        # Add extra space above the first button group
+        buttons_layout.addSpacerItem(QSpacerItem(20, 30, QSizePolicy.Minimum, QSizePolicy.Fixed))
         
         # Button configurations
         button_configs = [
@@ -160,14 +163,15 @@ class MainWindow(QWidget):
             ("Exit Application", "Close EigenPrep", True, self.close)
         ]
         
-        for text, description, enabled, callback in button_configs:
+        for idx, (text, description, enabled, callback) in enumerate(button_configs):
             btn_container = QVBoxLayout()
-            btn_container.setSpacing(8)
+            #btn_container.setSpacing(45) ##################
             
             btn = AnimatedButton(text)
-            btn.setFixedHeight(65)
+            btn.setFixedHeight(50)
             btn.setFont(QFont("Segoe UI", 14, QFont.Medium))
             btn.setEnabled(enabled)
+            btn.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
             
             if callback:
                 btn.clicked.connect(callback)
@@ -175,12 +179,16 @@ class MainWindow(QWidget):
             # Description label
             desc_label = QLabel(description)
             desc_label.setFont(QFont("Segoe UI", 11))
-            desc_label.setStyleSheet("color: #7f8c8d; margin-left: 5px; margin-bottom: 5px;")
+            desc_label.setStyleSheet("color: #7f8c8d; margin-left: 5px; margin-top: 0px; margin-bottom: 18px;")
+            desc_label.setWordWrap(True)
             
             btn_container.addWidget(btn)
             btn_container.addWidget(desc_label)
             
             buttons_layout.addLayout(btn_container)
+        
+        # Add extra space below the last button group
+        buttons_layout.addSpacerItem(QSpacerItem(20, 30, QSizePolicy.Minimum, QSizePolicy.Fixed))
         
         container_layout.addWidget(buttons_frame)
         container_layout.addStretch()
